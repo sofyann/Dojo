@@ -40,7 +40,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                @if (ViewBag.Title.Equals("Edit"))
+                {
+                    <input type="submit" value="Modifier" class="btn btn-default" />
+                }
+                else
+                {
+                    <input type="submit" value="Créer" class="btn btn-default" />
+                }
             </div>
         </div>
     </div>
