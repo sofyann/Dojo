@@ -11,6 +11,10 @@ namespace Dojo.Models
     {
         public Samurai Samurai { get; set; }
         public List<Arme> armes { get; set; }
-        public int? armeId { get; set; }
+        public List<ArtMartial> ArtMartials { get; set; }
+        [Display(Name = "Arme")]
+        public long? armeId { get; set; }
+        [Display(Name = "Arts martiaux maitrisés")]
+        public List<long> ArtMartiauxIds { get; set; }
     }
 }

@@ -41,9 +41,11 @@ namespace Dojo.Controllers
         // GET: Samurais/Create
         public ActionResult Create()
         {
+            var armesUsedIds = db.Samurais.Where(x => x.Arme != null).Select(x => x.Arme.Id).ToList();
             SamuraiViewModel svm = new SamuraiViewModel()
             {
-                armes = db.Armes.ToList()
+                armes = db.Armes.Where(a => !armesUsedIds.Contains(a.Id)).Select(a => a).ToList(),
+                ArtMartials = db.ArtMartials.ToList()
             };
 
             return View(svm);
@@ -56,14 +58,15 @@ namespace Dojo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(SamuraiViewModel svm)
         {
-            svm.armes = db.Armes.ToList();
+            var armesUsedIds = db.Samurais.Where(x => x.Arme != null).Select(x => x.Arme.Id).ToList();
+            svm.armes = db.Armes.Where(a => !armesUsedIds.Contains(a.Id)).Select(a => a).ToList();
+            svm.ArtMartials = db.ArtMartials.ToList();
             if (ModelState.IsValid && SamuraiValidator.Validate(svm, ModelState, db))
             {
                 db.Samurais.Add(svm.Samurai);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(svm);
         }
 
@@ -79,11 +82,14 @@ namespace Dojo.Controllers
             {
                 return HttpNotFound();
             }
+            var armesUsedIds = db.Samurais.Where(x => x.Arme != null && x.Id != id).Select(x => x.Arme.Id).ToList();
             SamuraiViewModel svm = new SamuraiViewModel()
             {
-                armes = db.Armes.ToList(),
+                armes = db.Armes.Where(a => !armesUsedIds.Contains(a.Id)).Select(a => a).ToList(),
+                ArtMartials = db.ArtMartials.ToList(),
                 Samurai = samurai,
-                armeId = (samurai.Arme == null ? 0 : samurai.Arme.Id) 
+                armeId = (samurai.Arme == null ? 0 : samurai.Arme.Id),
+                ArtMartiauxIds = samurai.ArtMartials.Select(a => a.Id).ToList()
             };
             return View(svm);
         }
@@ -95,7 +101,9 @@ namespace Dojo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SamuraiViewModel svm)
         {
-            svm.armes = db.Armes.ToList();
+            var armesUsedIds = db.Samurais.Where(x => x.Arme != null && x.Id != svm.Samurai.Id).Select(x => x.Arme.Id).ToList();
+            svm.armes = db.Armes.Where(a => !armesUsedIds.Contains(a.Id)).Select(a => a).ToList();
+            svm.ArtMartials = db.ArtMartials.ToList();
             if (ModelState.IsValid && SamuraiValidator.Validate(svm, ModelState, db))
             {
                 db.Entry(svm.Samurai).State = EntityState.Modified;

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arme.cs" />
+    <Compile Include="ArtMartial.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Samurai.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

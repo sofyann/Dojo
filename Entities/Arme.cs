@@ -9,6 +9,8 @@ namespace Entities
 {
     public class Arme : Entity
     {
+        private long id;
+        public long Id { get => this.id; set => this.id = value; }
         [Required]
         [StringLength(maximumLength: 30, MinimumLength = 2, ErrorMessage = "Le nom doit faire entre 2 et 30 caractères.")]
         [DataType(DataType.Text)]

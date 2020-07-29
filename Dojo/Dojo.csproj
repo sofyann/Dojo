@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArmesController.cs" />
+    <Compile Include="Controllers\ArtMartialsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SamuraisController.cs" />
     <Compile Include="Data\DojoContext.cs" />
@@ -144,6 +145,30 @@
     <Compile Include="Migrations\202007271305509_anotations-samurai-migration.cs" />
     <Compile Include="Migrations\202007271305509_anotations-samurai-migration.Designer.cs">
       <DependentUpon>202007271305509_anotations-samurai-migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007281457337_test.cs" />
+    <Compile Include="Migrations\202007281457337_test.Designer.cs">
+      <DependentUpon>202007281457337_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007281506204_ajout-artmartiaux.cs" />
+    <Compile Include="Migrations\202007281506204_ajout-artmartiaux.Designer.cs">
+      <DependentUpon>202007281506204_ajout-artmartiaux.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007281509233_modification-id.cs" />
+    <Compile Include="Migrations\202007281509233_modification-id.Designer.cs">
+      <DependentUpon>202007281509233_modification-id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007281510172_modification-listartmartiaux.cs" />
+    <Compile Include="Migrations\202007281510172_modification-listartmartiaux.Designer.cs">
+      <DependentUpon>202007281510172_modification-listartmartiaux.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007281518554_manytomany-artmartiaux-samurais.cs" />
+    <Compile Include="Migrations\202007281518554_manytomany-artmartiaux-samurais.Designer.cs">
+      <DependentUpon>202007281518554_manytomany-artmartiaux-samurais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007281531469_mono-samurai-arme-uni.cs" />
+    <Compile Include="Migrations\202007281531469_mono-samurai-arme-uni.Designer.cs">
+      <DependentUpon>202007281531469_mono-samurai-arme-uni.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SamuraiViewModel.cs" />
@@ -199,6 +224,12 @@
     <Content Include="Views\Samurais\Index.cshtml" />
     <Content Include="Views\Armes\_SetArme.cshtml" />
     <Content Include="Views\Samurais\_SetSamurai.cshtml" />
+    <Content Include="Views\ArtMartials\Create.cshtml" />
+    <Content Include="Views\ArtMartials\Delete.cshtml" />
+    <Content Include="Views\ArtMartials\Details.cshtml" />
+    <Content Include="Views\ArtMartials\Edit.cshtml" />
+    <Content Include="Views\ArtMartials\Index.cshtml" />
+    <Content Include="Views\ArtMartials\_SetArtMartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -231,6 +262,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007271305509_anotations-samurai-migration.resx">
       <DependentUpon>202007271305509_anotations-samurai-migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007281457337_test.resx">
+      <DependentUpon>202007281457337_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007281506204_ajout-artmartiaux.resx">
+      <DependentUpon>202007281506204_ajout-artmartiaux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007281509233_modification-id.resx">
+      <DependentUpon>202007281509233_modification-id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007281510172_modification-listartmartiaux.resx">
+      <DependentUpon>202007281510172_modification-listartmartiaux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007281518554_manytomany-artmartiaux-samurais.resx">
+      <DependentUpon>202007281518554_manytomany-artmartiaux-samurais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007281531469_mono-samurai-arme-uni.resx">
+      <DependentUpon>202007281531469_mono-samurai-arme-uni.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

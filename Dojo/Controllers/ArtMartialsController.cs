@@ -7,118 +7,111 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dojo.Data;
-using Dojo.Utils.Validators;
 using Entities;
 
 namespace Dojo.Controllers
 {
-    public class ArmesController : Controller
+    public class ArtMartialsController : Controller
     {
         private DojoContext db = new DojoContext();
 
-        // GET: Armes
+        // GET: ArtMartials
         public ActionResult Index()
         {
-            return View(db.Armes.ToList());
+            return View(db.ArtMartials.ToList());
         }
 
-        // GET: Armes/Details/5
-        public ActionResult Details(int? id)
+        // GET: ArtMartials/Details/5
+        public ActionResult Details(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Arme arme = db.Armes.Find(id);
-            if (arme == null)
+            ArtMartial artMartial = db.ArtMartials.Find(id);
+            if (artMartial == null)
             {
                 return HttpNotFound();
             }
-            return View(arme);
+            return View(artMartial);
         }
 
-        // GET: Armes/Create
+        // GET: ArtMartials/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Armes/Create
+        // POST: ArtMartials/Create
         // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nom,Degats")] Arme arme)
+        public ActionResult Create([Bind(Include = "Id,Nom")] ArtMartial artMartial)
         {
-            if (ModelState.IsValid && ArmeValidator.Validate(arme, ModelState, db))
+            if (ModelState.IsValid)
             {
-                db.Armes.Add(arme);
+                db.ArtMartials.Add(artMartial);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(arme);
+            return View(artMartial);
         }
 
-        // GET: Armes/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: ArtMartials/Edit/5
+        public ActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Arme arme = db.Armes.Find(id);
-            if (arme == null)
+            ArtMartial artMartial = db.ArtMartials.Find(id);
+            if (artMartial == null)
             {
                 return HttpNotFound();
             }
-            return View(arme);
+            return View(artMartial);
         }
 
-        // POST: Armes/Edit/5
+        // POST: ArtMartials/Edit/5
         // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nom,Degats")] Arme arme)
+        public ActionResult Edit([Bind(Include = "Id,Nom")] ArtMartial artMartial)
         {
-            if (ModelState.IsValid && ArmeValidator.Validate(arme, ModelState, db))
+            if (ModelState.IsValid)
             {
-                db.Entry(arme).State = EntityState.Modified;
+                db.Entry(artMartial).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(arme);
+            return View(artMartial);
         }
 
-        // GET: Armes/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: ArtMartials/Delete/5
+        public ActionResult Delete(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Arme arme = db.Armes.Find(id);
-            if (arme == null)
+            ArtMartial artMartial = db.ArtMartials.Find(id);
+            if (artMartial == null)
             {
                 return HttpNotFound();
             }
-            return View(arme);
+            return View(artMartial);
         }
 
-        // POST: Armes/Delete/5
+        // POST: ArtMartials/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(long id)
         {
-            Arme arme = db.Armes.Find(id);
-            if (db.Samurais.Include(x => x.Arme).Where(s => s.Arme.Id.Equals(arme.Id)).FirstOrDefault() != null)
-            {
-                ModelState.AddModelError("", "Vous ne pouvez pas supprimer une arme affectée à un samuraï.");
-                return View(arme);
-            }
-            
-            db.Armes.Remove(arme);
+            ArtMartial artMartial = db.ArtMartials.Find(id);
+            db.ArtMartials.Remove(artMartial);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

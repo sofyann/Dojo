@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -22,5 +23,14 @@ namespace Dojo.Data
         public System.Data.Entity.DbSet<Entities.Arme> Armes { get; set; }
 
         public System.Data.Entity.DbSet<Entities.Samurai> Samurais { get; set; }
+
+        public System.Data.Entity.DbSet<Entities.ArtMartial> ArtMartials { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Samurai>().HasMany(x => x.ArtMartials).WithMany(x => x.Samurais);
+            modelBuilder.Entity<Samurai>().HasOptional(x => x.Arme);
+            modelBuilder.Entity<Samurai>().Ignore(x => x.Potentiel);
+        }
     }
 }
